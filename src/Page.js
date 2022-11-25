@@ -1,6 +1,6 @@
 import React from 'react'
 import Pokemon from './Pokemon'
-function page({ currentPokemons, currentPage }) {
+function page({ currentPokemons, currentPage, setPokemons }) {
   return (
     <div>
       <h1 class="flex justify-center mt-5 mb-10">
@@ -11,7 +11,7 @@ function page({ currentPokemons, currentPage }) {
         <div className="pokemon-list">
           {
             currentPokemons.map(item => {
-              return <Pokemon key={item.id} pokemon={item} />
+              return <Pokemon key={item.id} pokemon={item} setPokemons={setPokemons}/>
             })
           }
         </div> : 

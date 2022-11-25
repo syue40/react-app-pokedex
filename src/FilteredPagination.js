@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Page from './Page'
 import Pagination from './Pagination';
 import axios from 'axios'
-function FilteredPagination({ types, checkedState }) {
-  const [pokemons, setPokemons] = useState([])
+function FilteredPagination({ types, checkedState, setPokemons }) {
+  const [pokemons, setPokemonList] = useState([])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(10);
@@ -39,7 +39,7 @@ function FilteredPagination({ types, checkedState }) {
         return data
       })
       .then(res => {
-        setPokemons(res)
+        setPokemonList(res)
       })
       .catch(err => console.log("err", err))
   }, [checkedState])
@@ -53,7 +53,7 @@ function FilteredPagination({ types, checkedState }) {
 
   return (
     <>
-      < Page currentPokemons={currentPokemons} currentPage={currentPage} />
+      < Page currentPokemons={currentPokemons} currentPage={currentPage} setPokemons={setPokemons}/>
       < Pagination
         numberOfPages={numberOfPages}
         currentPage={currentPage}

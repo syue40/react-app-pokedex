@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Input from '@mui/material/Input';
-import TextField from '@mui/material/TextField';
 const ariaLabel = { 'aria-label': 'description' };
 function Search({ types, checkedState, setCheckedState }) {
   var currentTypes = checkedState.types_array;

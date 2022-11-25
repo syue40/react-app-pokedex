@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import FilteredPagination from './FilteredPagination'
+import PokemonProfile from './PokemonProfile';
 import Search from './Search'
 import axios from 'axios'
 
@@ -12,6 +14,7 @@ function Main() {
     "attack_range": [],
     "health_range": []
   });
+  const [pokemon, setPokemons] = useState("")
   const types = useRef([])
 
   useEffect(() => {
@@ -29,8 +32,24 @@ function Main() {
 
   return (
     <>
-      <Search types={types} checkedState={checkedState} setCheckedState={setCheckedState} />
-      <FilteredPagination types={types} checkedState={checkedState} />
+    <BrowserRouter>
+    <Routes>
+      <Route 
+      path="/"
+      element={
+          <>
+          <Search types={types} checkedState={checkedState} setCheckedState={setCheckedState} />
+          <FilteredPagination types={types} checkedState={checkedState} setPokemons={setPokemons}/>
+          </>
+          }
+        />
+      <Route
+        path="/pokemon/*" 
+        element={
+          <PokemonProfile pokemon={pokemon}/>
+        }/>
+    </Routes>
+    </BrowserRouter>
     </>
   )
 }
